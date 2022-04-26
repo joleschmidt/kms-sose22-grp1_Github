@@ -12,7 +12,7 @@ app.listen(8080, "localhost", function () {
 })
 
 //Verbindung zur Datenbank
-const connection: mysql.Connection = mysql.createConnection({
+const database: mysql.Connection = mysql.createConnection({
     database: "aufgaben",
     host: "localhost",
     user: "root"
