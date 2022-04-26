@@ -13,7 +13,7 @@ app.listen(8080, "localhost", function () {
 
 //Verbindung zur Datenbank
 const connection: mysql.Connection = mysql.createConnection({
-    database: "aufgaben",
+    database: "kms_sose22_grp1",
     host: "localhost",
     user: "root"
 });
