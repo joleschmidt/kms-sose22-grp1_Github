@@ -24,11 +24,39 @@ database.connect((err: MysqlError) => { if (err) {
     console.log('Datenbank läuft'); }
 });
 
+
+
 app.post('/aufgabe',(req:Request,res:Response)=>{
     //Aufgabe erstellen
 
-    const Aufgabe: string = req.body.aufgabe;
+    const aufgabe: string = req.body.aufgabe;
 
+    //add Aufgabe
+    if (aufgabe) {
+        // Create new aufgabe
+        let data: [string] = [aufgabe];
+
+        let query:string= 'INSERT INTO aufgaben (aufgabe)'+ 'VALUES (?);';
+
+        database.query(query,data,(err:MysqlError, result:any)=>{
+            if (err|| result === null){
+                //Query could not be executed
+                res.status(500).send({
+                    message:'Database request failed'+ err,
+                });
+            } else {
+                //die Aufgabe was created
+                res.status(200).send({
+                    message:'Successfully aufgabe created ',
+                    aufgabe:result.aufgabe
+                });
+            }
+        });
+    }else {
+        res.status(400).send({
+            message:'Not all mandatory fields are filled in',
+        });
+    }
 
 
     res.status(200).send({
