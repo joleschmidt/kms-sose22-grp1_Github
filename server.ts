@@ -2,6 +2,7 @@ import express = require("express")
 import {Request} from "express";
 import {Response} from "express";
 import * as mysql from "mysql";
+import { Connection, MysqlError } from 'mysql';
 
 
 //define and start server
@@ -12,8 +13,13 @@ app.listen(8080, "localhost", function () {
 
 //Verbindung zur Datenbank
 const connection: mysql.Connection = mysql.createConnection({
-    database: "second chance merchandise",
+    database: "aufgaben",
     host: "localhost",
     user: "root"
 });
 
+
+database.connect((err: MysqlError) => { if (err) {
+    console.log('Database connection failed: ', err); } else {
+    console.log('Database is connected'); }
+});
