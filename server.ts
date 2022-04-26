@@ -19,7 +19,7 @@ const connection: mysql.Connection = mysql.createConnection({
 });
 
 
-database.connect((err: MysqlError) => { if (err) {
+connection.connect((err: MysqlError) => { if (err) {
     console.log('Database connection failed: ', err); } else {
     console.log('Database is connected'); }
 });
