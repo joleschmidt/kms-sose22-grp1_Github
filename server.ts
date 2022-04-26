@@ -23,3 +23,13 @@ database.connect((err: MysqlError) => { if (err) {
     console.log('Database connection failed: ', err); } else {
     console.log('Datenbank läuft'); }
 });
+
+app.post('/aufgabe',(req:Request,res:Response)=>{
+    //Aufgabe erstellen
+    delete req.session.user;  //Delete user from session
+    res.status(200).send({
+        message:'Successfully logged out'
+    });
+});
+
+
