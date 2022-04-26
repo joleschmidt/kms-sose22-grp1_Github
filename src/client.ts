@@ -1,4 +1,6 @@
 
+let todoList: any [] = [];
+
 
 function getTodos() {
 
@@ -7,7 +9,7 @@ function getTodos() {
         type: 'GET',
         dataType: 'json',
         success: (response) => {
-            //renderTodos(response.todoList);
+            renderTodos(response.todoList);
         },
         error: (jqXHRresponse) => {
             console.log(jqXHRresponse.responseJSON.message);
@@ -18,12 +20,21 @@ function getTodos() {
 
 
 function renderTodos () {
-    //const festivalTableBody: JQuery = $('#alle_festivals');
-    //const searchList: JQuery = $('#festival_search_list');
-    // Delete the old table of users from the DOM
-    
-    for(const todo of todos) {
+    const todoBody: JQuery = $('#todo-body');
+    todoBody.empty();
 
+    for(const todo of todoList) {
+        const tableEntry: JQuery = $(`
+        <div class="card m-3 mt-3" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">{todo.title}</h5>
+            <p class="card-text">{todo.date}</p>
+            <a class="btn btn-secondary mr-2">Edit</a>
+            <a class="btn btn-danger">Delete</a>
+            </div>
+            </div>
+        `);
+        todoBody.append(tableEntry);
     }
 }
 
