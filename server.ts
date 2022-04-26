@@ -23,3 +23,6 @@ connection.connect((err: MysqlError) => { if (err) {
     console.log('Database connection failed: ', err); } else {
     console.log('Database is connected'); }
 });
+
+
+
