@@ -26,9 +26,13 @@ database.connect((err: MysqlError) => { if (err) {
 
 app.post('/aufgabe',(req:Request,res:Response)=>{
     //Aufgabe erstellen
-    delete req.session.user;  //Delete user from session
+
+    const Aufgabe: string = req.body.aufgabe;
+
+
+
     res.status(200).send({
-        message:'Successfully logged out'
+        message:'Successfully Aufgabe geaddet'
     });
 });
 
