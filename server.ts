@@ -13,13 +13,13 @@ app.listen(8080, "localhost", function () {
 
 //Verbindung zur Datenbank
 const database: mysql.Connection = mysql.createConnection({
-    database: "aufgaben",
+    database: "kms_sose22_grp1",
     host: "localhost",
     user: "root"
 });
 
 
-connection.connect((err: MysqlError) => { if (err) {
+database.connect((err: MysqlError) => { if (err) {
     console.log('Database connection failed: ', err); } else {
-    console.log('Database is connected'); }
+    console.log('Datenbank läuft'); }
 });
