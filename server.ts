@@ -64,4 +64,26 @@ app.post('/aufgabe',(req:Request,res:Response)=>{
     });
 });
 
+//get all Aufgaben
+{/*
+app.get('/aufgabe',(req:Request,res:Response)=>{
+
+    let query: string= 'SELECT * FROM aufgaben;';
+
+    database.query(query,(err:MysqlError, result:any)=>{
+        if (err|| result === null){
+            //Query could not be executed
+            res.status(500).send({
+                message:'Database request failed'+ err,
+            });
+        } else {
+            //die Aufgabe was created
+            res.status(200).send({
+                message:'Successfully aufgabe created ',
+                aufgabe: result
+            });
+        }
+    });
+});
+*/}
 
