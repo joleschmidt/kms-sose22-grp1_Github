@@ -8,7 +8,7 @@ import { Connection, MysqlError } from 'mysql';
 //define and start server
 const app = express();
 app.listen(8080, "localhost", function () {
-    console.log('Server läuft! http://localhost:8080/')
+    console.log('Server läuft! http://localhost:8080/index.html')
 })
 
 //Verbindung zur Datenbank
@@ -17,7 +17,6 @@ const database: mysql.Connection = mysql.createConnection({
     host: "localhost",
     user: "root"
 });
-
 
 database.connect((err: MysqlError) => { if (err) {
     console.log('Database connection failed: ', err); } else {
@@ -63,5 +62,30 @@ app.post('/aufgabe',(req:Request,res:Response)=>{
         message:'Successfully Aufgabe geaddet'
     });
 });
+
+
+/*
+SQL Queries
+
+Aufgabe erstellen:
+INSERT INTO aufgaben (name, prioritaet) VALUES (?, 1)
+-Erwartet Name als String
+
+Eine bestimmte Aufgabe abfragen:
+SELECT * FROM aufgaben WHERE aufgaben_id = ?
+-Erwartet AufgabenId als Int
+
+Eine bestimmte Aufgabe bearbeiten:
+UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?
+-Erwartet Name als String, Priorität als Int und Aufgaben_id als Int
+
+Alle Aufgaben abrufen:
+SELECT * FROM aufgaben
+
+Eine bestimmte Aufgabe löschen:
+DELETE FROM aufgaben WHERE aufgaben_id = ?
+ */
+
+
 
 
