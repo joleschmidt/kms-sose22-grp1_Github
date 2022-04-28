@@ -24,6 +24,13 @@ database.connect((err: MysqlError) => { if (err) {
 });
 
 
+//statische Routen
+const basedir: string = __dirname;
+app.use('/', express.static(basedir + '/html'));
+app.use('/src', express.static(basedir + '/src'));
+app.use('/jquery', express.static(basedir + '/node_modules/jquery/dist'));
+app.use('/bootstrap', express.static(basedir + '/node_modules/bootstrap/dist'));
+
 
 app.post('/aufgabe',(req:Request,res:Response)=>{
     //Aufgabe erstellen
@@ -36,6 +43,12 @@ app.post('/aufgabe',(req:Request,res:Response)=>{
         let data: [string] = [aufgabe];
 
         let query:string= 'INSERT INTO aufgaben (aufgabe)'+ 'VALUES (?);';
+        /*SQL Aufgabe erstellen:
+            INSERT INTO aufgaben (name, prioritaet) VALUES (?, 1)
+        -Erwartet Name als String
+        */
+
+
 
         database.query(query,data,(err:MysqlError, result:any)=>{
             if (err|| result === null){
