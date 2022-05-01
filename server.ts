@@ -86,24 +86,47 @@ app.get('/aufgaben', function (req: Request, res: Response) {
             //Query could not be executed
             res.status(500).send({
                 message: 'Database request failed' + err,
-            })
+            });
         } else {
-            //let aufgaben : Aufgabe[] = []
+            let aufgaben: any[] = [];
             for (let row of result){
-                /*
-                let aufgabe = new Aufgabe(row.name, row.prioritaet)
-                aufgaben.push(aufgabe)
-                )
-                 */
+                aufgaben.push(row);
             }
             res.status(200).send({
-                //aufgaben: aufgaben
-            })
+                aufgaben: aufgaben,
+                message: "Successfully requested todos."
+            });
         }
         }
-    )
-    })
+    );
+    });
 
+app.put('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
+
+    let aufgaben_id: number = Number(req.params.aufgaben_id);
+    let name: string = req.body.name;
+    let prioritaet: number = req.body.prioritaet;
+
+    let data: [number, string, number] = [aufgaben_id, name, prioritaet];
+
+    let query: string = 'UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;';
+
+    database.query(query, data, (err: MysqlError, result: any) => {
+        if (err) {
+            res.status(500).send({
+                message: 'Database request failed' + err,
+            });
+        } else if (result.affectedRows === 1) {
+            res.status(200).send({
+                message: 'Successfully updated aufgabe.',
+            });
+        } else {
+            res.status(404).send({
+                message: 'Aufgabe to update not found.'
+            });
+        }
+    });
+});
 /*
 SQL Queries
 
