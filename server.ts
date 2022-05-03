@@ -39,20 +39,13 @@ app.use('/bootstrap', express.static(basedir + '/node_modules/bootstrap/dist/'))
 app.post('/aufgabe', (req: Request, res: Response) => {
     //Aufgabe erstellen
 
-    const aufgabe: string = req.body.aufgabe;
+    let aufgabe: string = req.body.aufgabe;
 
     //add Aufgabe
     if (aufgabe) {
         // Create new aufgabe
-        let data: [string] = [aufgabe];
-
-        let query: string = 'INSERT INTO aufgaben (aufgabe)' + 'VALUES (?);';
-        /*SQL Aufgabe erstellen:
-            INSERT INTO aufgaben (name, prioritaet) VALUES (?, 1)
-        -Erwartet Name als String
-        */
-
-
+        let data: string = aufgabe;
+        let query: string = 'INSERT INTO aufgaben (name, prioritaet) VALUES (?, 1)';
         database.query(query, data, (err: MysqlError, result: any) => {
             if (err || result === null) {
                 //Query could not be executed

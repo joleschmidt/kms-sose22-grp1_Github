@@ -1,3 +1,4 @@
+
 let todoList: any [] = [
     {
         id: 1,
@@ -94,6 +95,23 @@ function updateToDos(event: Event){
     })
 }
 
+function createTask(inputAufgabe): void {
+    const aufgabe: string = inputAufgabe.val().toString();
+    console.log(aufgabe)
+
+    $.ajax("/aufgabe", {
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            aufgabe: aufgabe
+        })
+    }).then((data) => {
+        alert(data);
+    }).catch((jqXHR: JQueryXHR) => {
+        alert(jqXHR.responseText);
+    });
+}
+
 //Main Callback
 $(() => {
     $("#edit-modal").hide();
@@ -108,3 +126,10 @@ $(() => {
     getTodos();
 });
 
+//Callback for Post
+
+$(() => {
+    let inputAufgabe: JQuery = $("#inputAufgabe");
+    let formInput: JQuery = $("#formInput");
+    formInput.on("submit",() => {createTask(inputAufgabe)});
+});
