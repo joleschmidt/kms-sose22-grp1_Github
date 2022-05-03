@@ -1,3 +1,4 @@
+import {json} from "express";
 
 let todoList: any [] = [
     {
@@ -62,8 +63,20 @@ function renderTodos(aufgaben: any[]) {
         todoBody.append(tableEntry);
     }
 }
-function updateToDos(event: Event){
+function renderModal(event: Event){
     const aufgaben_id: number = Number($(event.currentTarget as HTMLElement).parent().children(".aufgaben_id").val());
+    $.ajax("/aufgabe_id/:"+ aufgaben_id, {
+        method: "GET",
+        contentType: "json"
+    }).then((data) =>{
+        $("#edit-modal").show();
+    }).catch((jqXHR: JQueryXHR) => {
+        console.log(jqXHR);
+    })
+}
+
+function updateToDos(event: Event){
+    const aufgaben_id: number = Number($("#aufgabe-id-hidden").val());
     const name: string = String($(".bearbeitenInput").val());
     const priority: number = Number($(".bearbeitenPrio").val());
     $.ajax("/aufgabe/:" + aufgaben_id, {
@@ -82,6 +95,14 @@ function updateToDos(event: Event){
 
 //Main Callback
 $(() => {
+    $("#edit-modal").hide();
+    $(".aufgabeBearbeiten").on("click", function (){
+        renderModal(event);
+    });
+    $(".save").on("click", function (){
+        updateToDos(event);
+    });
+
     getTodos();
 });
 
