@@ -104,18 +104,18 @@ app.get('/aufgaben', function (req: Request, res: Response) {
 
 app.put('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
 
-    let aufgaben_id: number = Number(req.params.aufgaben_id);
-    let name: string = req.body.name;
-    let prioritaet: number = req.body.prioritaet;
+    const aufgaben_id: number = Number(req.params.aufgaben_id);
+    const name: string = req.body.name;
+    const prioritaet: number = req.body.prioritaet;
 
-    let data: [number, string, number] = [aufgaben_id, name, prioritaet];
+    const data: [number, string, number] = [aufgaben_id, name, prioritaet];
 
-    let query: string = 'UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;';
+    const query: string = 'UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;';
 
     database.query(query, data, (err: MysqlError, result: any) => {
         if (err) {
             res.status(500).send({
-                message: 'Database request failed' + err,
+                message: 'Databaserequest failed' + err,
             });
         } else if (result.affectedRows === 1) {
             res.status(200).send({
@@ -126,6 +126,39 @@ app.put('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
                 message: 'Aufgabe to update not found.'
             });
         }
+    });
+});
+
+app.get('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
+
+    const aufgaben_id: number = Number(req.params.aufgaben_id);
+
+    const data: [number] = [aufgaben_id];
+
+    const query: string = 'SELECT * FROM aufgaben WHERE aufgaben_id = ?;';
+
+    database.query(query, data, (err: MysqlError, result: any) => {
+        if (err){
+            res.status(500).send({
+                message: 'Databaserequest failed' + err,
+            });
+        } else if (result.affectedRows === 1) {
+            const aufgabe: Aufgabe = new Aufgabe(
+                result[0].id,
+                result[0].name,
+                result[0].date,
+                result[0].prioritaet
+            );
+            res.status(200).send({
+                message: 'Successfully requested the aufgabe.',
+                aufgabe: aufgabe,
+            });
+        } else {
+            res.status(404).send({
+                message: 'Requested aufgabe not found.'
+            });
+        }
+
     });
 });
 /*
