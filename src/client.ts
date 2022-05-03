@@ -44,8 +44,8 @@ function renderModal(event: Event){
         method: "GET",
         contentType: "json"
     }).then((data) =>{
-        $("#bearbeitenAufgabe").val(data.aufgabe);
-        $("#bearbeitenPrio").val(data.priority);
+        $("#bearbeitenAufgabe").val(data.name);
+        $("#bearbeitenPrio").val(data.prioritaet);
         $("#aufgabe-id-hidden").val(data.id);
     }).catch((jqXHR: JQueryXHR) => {
         console.log(jqXHR);
