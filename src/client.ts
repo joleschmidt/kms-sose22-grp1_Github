@@ -1,5 +1,3 @@
-import {json} from "express";
-
 let todoList: any [] = [
     {
         id: 1,
@@ -69,6 +67,9 @@ function renderModal(event: Event){
         method: "GET",
         contentType: "json"
     }).then((data) =>{
+        $("#bearbeitenAufgabe").val(data.aufgabe);
+        $("#bearbeitenPrio").val(data.priority);
+        $("#aufgabe-id-hidden").val(data.id);
         $("#edit-modal").show();
     }).catch((jqXHR: JQueryXHR) => {
         console.log(jqXHR);
@@ -100,6 +101,7 @@ $(() => {
         renderModal(event);
     });
     $(".save").on("click", function (){
+        $("#edit-modal").hide();
         updateToDos(event);
     });
 
