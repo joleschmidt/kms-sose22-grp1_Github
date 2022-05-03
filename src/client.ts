@@ -62,6 +62,23 @@ function renderTodos(aufgaben: any[]) {
         todoBody.append(tableEntry);
     }
 }
+function updateToDos(event: Event){
+    const aufgaben_id: number = Number($(event.currentTarget as HTMLElement).parent().children(".aufgaben_id").val());
+    const name: string = String($(".bearbeitenInput").val());
+    const priority: number = Number($(".bearbeitenPrio").val());
+    $.ajax("/aufgabe/:" + aufgaben_id, {
+        method: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify({
+            name: name,
+            priority: priority
+        })
+    }).then((data) =>{
+        alert(data)
+    }).catch((jqXHR: JQueryXHR) =>{
+        console.log(jqXHR.responseText);
+    })
+}
 
 //Main Callback
 $(() => {
