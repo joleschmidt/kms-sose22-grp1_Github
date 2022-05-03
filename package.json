@@ -8,6 +8,7 @@
     "mysql": "^2.18.1"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.1.10",
     "@types/jquery": "^3.5.14"
   }
 }
