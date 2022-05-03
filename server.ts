@@ -3,6 +3,7 @@ import {Request} from "express";
 import {Response} from "express";
 import * as mysql from "mysql";
 import {MysqlError} from 'mysql';
+import {Aufgabe} from "./model/aufgabe";
 
 
 //define and start server
@@ -88,7 +89,7 @@ app.get('/aufgaben', function (req: Request, res: Response) {
                 message: 'Database request failed' + err,
             });
         } else {
-            let aufgaben: any[] = [];
+            let aufgaben: Aufgabe[] = [];
             for (let row of result){
                 aufgaben.push(row);
             }
