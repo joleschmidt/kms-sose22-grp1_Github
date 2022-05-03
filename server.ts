@@ -29,10 +29,10 @@ database.connect((err: MysqlError) => {
 
 //statische Routen
 const basedir: string = __dirname;
-app.use('/', express.static(basedir + '/html'));
+app.use('/', express.static(basedir + ''));
 app.use('/src', express.static(basedir + '/src'));
 app.use('/jquery', express.static(basedir + '/node_modules/jquery/dist'));
-app.use('/bootstrap', express.static(basedir + '/node_modules/bootstrap/dist'));
+app.use('/bootstrap', express.static(basedir + '/node_modules/bootstrap/dist/'));
 
 
 app.post('/aufgabe', (req: Request, res: Response) => {
@@ -173,4 +173,3 @@ app.get('/aufgabe',(req:Request,res:Response)=>{
     });
 });
 */}
-
