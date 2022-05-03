@@ -8,6 +8,7 @@ import {Aufgabe} from "./model/aufgabe";
 
 //define and start server
 const app = express();
+app.use(express.json());
 app.listen(8080, "localhost", function () {
     console.log('Server läuft! http://localhost:8080/index.html')
 })
@@ -38,7 +39,7 @@ app.use('/bootstrap', express.static(basedir + '/node_modules/bootstrap/dist/'))
 
 app.post('/aufgabe', (req: Request, res: Response) => {
     //Aufgabe erstellen
-
+    console.log(req.body)
     let aufgabe: string = req.body.aufgabe;
 
     //add Aufgabe
@@ -47,7 +48,7 @@ app.post('/aufgabe', (req: Request, res: Response) => {
         let data: string = aufgabe;
         let query: string = 'INSERT INTO aufgaben (name, prioritaet) VALUES (?, 1)';
         database.query(query, data, (err: MysqlError, result: any) => {
-            if (err || result === null) {
+            if (err) {
                 //Query could not be executed
                 res.status(500).send({
                     message: 'Database request failed' + err,
@@ -65,11 +66,6 @@ app.post('/aufgabe', (req: Request, res: Response) => {
             message: 'Not all mandatory fields are filled in',
         });
     }
-
-
-    res.status(200).send({
-        message: 'Successfully Aufgabe geaddet'
-    });
 });
 
 
