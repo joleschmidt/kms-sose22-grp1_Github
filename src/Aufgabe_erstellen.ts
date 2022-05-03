@@ -1,23 +1,25 @@
 class Aufgabe{
     public aufgabe:string;
-
     constructor(new_aufgabe:string){
         this.aufgabe=new_aufgabe;
     }
 }
 
 let inputAufgabe: JQuery;
-let formAufgabe: JQuery;
+let formInput: JQuery;
 const aufgaben:Array<Aufgabe>= new Array<Aufgabe>();
 
 $(() => {
-    inputAufgabe = $("#ainput");
-    formAufgabe.on("aerstellen", aufgabeerstellen);
+    inputAufgabe = $("#inputAufgabe");
+    formInput = $("#formInput");
+
+    formInput.on("submit", erstelleAufgabe);
+
 });
 
-
-function aufgabeerstellen():void{
-    const aufgabe:string=inputAufgabe.valueOf().toString();
+function erstelleAufgabe(): void {
+    const aufgabe: string = inputAufgabe.val().toString();
+    //alert(aufgabe);
 
     $.ajax("/aufgabe", {
         method: "POST",
@@ -30,5 +32,4 @@ function aufgabeerstellen():void{
     }).catch((jqXHR: JQueryXHR) => {
         alert(jqXHR.responseText);
     });
-
 }

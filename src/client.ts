@@ -20,7 +20,7 @@ let todoList: any [] = [
     }
 ];
 
-//get todos from server
+
 function getTodos() {
 
     $.ajax({
@@ -33,24 +33,26 @@ function getTodos() {
         error: (jqXHRresponse) => {
             console.log(jqXHRresponse.responseJSON.message);
         },
-    }).then(() => {});
+    }).then(() => {
+    });
 }
 
-//render all todos as cards
-function renderTodos (todoList: any[]) {
+
+function renderTodos (aufgaben: any[]) {
+    console.log(aufgaben);
     const todoBody: JQuery = $('#todo-body');
-
     todoBody.empty();
-
-    for(const todo of todoList) {
+    for(const aufgabe of aufgaben) {
         const tableEntry: JQuery = $(`
-            <div class="card m-3 mt-3" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{todo.title}</h5>
-                        <p class="card-text">{todo.date}</p>
-                        <a class="btn btn-secondary mr-2">Edit</a>
-                        <a class="btn btn-danger">Delete</a>
-                </div>
+        <div class="card m-3 mt-3" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title aufgaben_name">${aufgabe.name}</h5>
+            <h6 class="aufgaben_id">Aufgabe ${aufgabe.id}</h6>
+            <p class="card-text priority">Priorität ${aufgabe.priority}</p>
+            <p class="card-text">${aufgabe.time}</p>
+            <a class="btn btn-secondary mr-2 aufgabeBearbeiten">Edit</a>
+            <a class="btn btn-danger">Delete</a>
+            </div>
             </div>
         `);
         todoBody.append(tableEntry);

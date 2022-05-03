@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Startseite</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/src/Aufgabe_erstellen.js"></script>
+    <script type="text/javascript" src="/src/client.js"></script>
 
 </head>
 <body>
-
-<div class="container">
-    <h2>Input</h2>
-    <p>Aufgabe Input</p>
-    <form id="formAufgabe">
-        <div class="form-aufgabe">
-            <label for="ainput">Aufgabe:</label>
-            <input type="text" class="form-control" id="ainput">
-
-            <button id="aerstellen" type="button" class="btn btn-primary">Aufgabe erstellen</button>
+<form id="formInput" >
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span>Aufgabe</span>
         </div>
-    </form>
-</div>
-
-
-
+        <input type="text" class="form-control" placeholder="Aufgabe" id="inputAufgabe">
+    </div>
+    <div class="input-group mb-3">
+        <button type="submit" >Aufgabe erstellen</button>
+    </div>
+</form>
+<div id="todo-body"></div>
 </body>
 </html>
