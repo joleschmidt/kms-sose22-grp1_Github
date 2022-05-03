@@ -30,7 +30,7 @@ function getTodos() {
         type: 'GET',
         dataType: 'json',
         success: (response) => {
-            //renderTodos(response.todoList);
+            renderTodos(response.aufgaben);
         },
         error: (jqXHRresponse) => {
             console.log(jqXHRresponse.responseJSON.message);
@@ -40,19 +40,19 @@ function getTodos() {
 }
 
 
-function renderTodos() {
-    console.log(todoList);
+function renderTodos(aufgaben: any[]) {
+    console.log(aufgaben);
 
     const todoBody: JQuery = $('#todo-body');
     todoBody.empty();
 
-    for(const aufgabe of todoList) {
+    for(const aufgabe of aufgaben) {
         const tableEntry: JQuery = $(`
         <div class="card m-3 mt-3" style="width: 18rem;">
         <div class="card-body">
         <h5 class="card-title aufgaben_name">${aufgabe.name}</h5>
-            <h6 class="aufgaben_id">ID: ${aufgabe.id}</h6>
-            <p class="card-text priority">Priorität ${aufgabe.priority}</p>
+            <h6 class="aufgaben_id">ID: ${aufgabe.aufgaben_id}</h6>
+            <p class="card-text priority">Priorität ${aufgabe.prioritaet}</p>
             <p class="card-text">${aufgabe.time}</p>
             <a class="btn btn-secondary mr-2 aufgabeBearbeiten">Edit</a>
             <a class="btn btn-danger">Delete</a>
@@ -66,6 +66,5 @@ function renderTodos() {
 //Main Callback
 $(() => {
     getTodos();
-    renderTodos()
 });
 
