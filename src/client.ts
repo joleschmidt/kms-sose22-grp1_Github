@@ -90,7 +90,7 @@ function createTask(inputAufgabe): void {
 //Main Callback
 $(() => {
     $("#edit-modal").hide();
-    $(".aufgabeBearbeiten").on("click", function (){
+    $("#todo-body").on("click", '.aufgabeBearbeiten', function () {
         $("#edit-modal").show();
         renderModal(event);
     });
