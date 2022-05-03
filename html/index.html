@@ -9,11 +9,12 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/src/Aufgabe_erstellen.js"></script>
     <script type="text/javascript" src="/src/client.js"></script>
 
 </head>
 <body>
+
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
     <div class="container px-4">
         <a class="navbar-brand" href="#page-top">Todo List</a>
@@ -27,6 +28,8 @@
         </div>
     </div>
 </nav>
+
+<!-- Aufagabe hinzufügen -->
 <div class="container">
 <form id="formInput" >
     <div class="input-group mb-3 mt-3">
@@ -34,11 +37,29 @@
             <span>Aufgabe</span>
         </div>
         <input type="text" class="form-control" placeholder="Aufgabe" id="inputAufgabe">
+
     </div>
+    <div class="input-group mb-3 mt-3">
+        <div class="input-group-prepend">
+            <span>Time</span>
+        </div>
+        <input type="date" class="form-control" placeholder="Time" id="inputtime">
+
+    </div>
+    <div class="input-group mb-3 mt-3">
+        <div class="input-group-prepend">
+            <span>Priorität</span>
+        </div>
+        <input type="number" class="form-control" placeholder="prioritaet" id="inputprioritaet">
+
+    </div>
+
     <div class="input-group mb-3">
         <button type="submit" >Aufgabe erstellen</button>
     </div>
 </form>
+
+    <!-- Aufagabe bearbeiten -->
 
 <div id="edit-modal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -49,11 +70,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Aufgabe" aria-label="Aufgabe" aria-describedby="basic-addon1">
                 </div>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary save">Save changes</button>
