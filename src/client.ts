@@ -81,7 +81,7 @@ function createTask(inputAufgabe): void {
             aufgabe: aufgabe
         })
     }).then((data) => {
-        alert(data);
+        alert(data + "erfolgreich hinzugefügt!");
     }).catch((jqXHR: JQueryXHR) => {
         alert(jqXHR.responseText);
     });
