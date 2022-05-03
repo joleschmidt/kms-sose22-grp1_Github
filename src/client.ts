@@ -40,7 +40,7 @@ function renderTodos(aufgaben: any[]) {
 }
 function renderModal(event: Event){
     const aufgaben_id: number = Number($(event.currentTarget as HTMLElement).parent().children(".aufgaben_id").val());
-    $.ajax("/aufgabe_id/:"+ aufgaben_id, {
+    $.ajax("/aufgabe/:"+ aufgaben_id, {
         method: "GET",
         contentType: "json"
     }).then((data) =>{
