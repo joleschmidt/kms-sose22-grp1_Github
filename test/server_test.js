@@ -19,3 +19,14 @@ describe('/POST', ()=>{
             })
     })
 })
+
+describe('/GET', () => {
+    it('successfully receives a task', (done) => {
+        chai.request(serverDir)
+            .get('/aufgabe/1')
+            .end((err,res) => {
+                res.should.have.status(200);
+                done();
+            })
+    })
+})

@@ -150,6 +150,7 @@ app.get('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
 
     });
 });
+module.exports = app;
 /*
 SQL Queries
 
