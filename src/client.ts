@@ -1,6 +1,4 @@
-
 function getTodos() {
-
     $.ajax({
         url: '/aufgaben',
         type: 'GET',
