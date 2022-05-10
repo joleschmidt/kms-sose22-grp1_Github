@@ -40,6 +40,7 @@ function renderTodos(aufgaben: any[]) {
     }
 }
 function renderModal(event: Event){
+    event.preventDefault();
     const aufgaben_id: number = Number($(event.currentTarget as HTMLElement).parent().children(".aufgaben_id").val());
     $.ajax("/aufgabe/:"+ aufgaben_id, {
         method: "GET",
@@ -54,6 +55,7 @@ function renderModal(event: Event){
 }
 
 function updateToDos(event: Event){
+    event.preventDefault();
     const aufgaben_id: number = Number($("#aufgabe-id-hidden").val());
     const name: string = String($(".bearbeitenInput").val());
     const priority: number = Number($(".bearbeitenPrio").val());
