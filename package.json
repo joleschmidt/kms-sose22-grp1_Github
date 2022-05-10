@@ -11,6 +11,12 @@
   },
   "devDependencies": {
     "@types/bootstrap": "^5.1.10",
-    "@types/jquery": "^3.5.14"
+    "@types/jquery": "^3.5.14",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.0.0"
+  },
+  "scripts": {
+    "test": "mocha test/server_test.js"
   }
 }
