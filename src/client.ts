@@ -18,6 +18,7 @@ function getTodos() {
 
 function renderTodos(aufgaben: any[]) {
     console.log(aufgaben);
+    console.log("Ziyad ist cool");
 
     const todoBody: JQuery = $('#todo-body');
     todoBody.empty();
