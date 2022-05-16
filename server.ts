@@ -93,13 +93,13 @@ app.get('/aufgaben', function (req: Request, res: Response) {
 
 app.put('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
 
-    const aufgaben_id: number = Number(req.params.aufgaben_id);
+    const aufgabe_id: number = parseInt(req.params.aufgabe_id);
     const name: string = req.body.name;
     const prioritaet: number = req.body.prioritaet;
 
-    const data: [number, string, number] = [aufgaben_id, name, prioritaet];
+    const data: [string, number, number] = [name, prioritaet, aufgabe_id];
 
-    const query: string = 'UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;';
+    const query: string = "UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;";
 
     database.query(query, data, (err: MysqlError, result: any) => {
         if (err) {
@@ -120,18 +120,18 @@ app.put('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
 
 app.get('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
 
-    const aufgaben_id: number = Number(req.params.aufgaben_id);
+    const aufgabe_id: number = Number(req.params.aufgabe_id);
 
-    const data: [number] = [aufgaben_id];
+    const data: [number] = [aufgabe_id];
 
     const query: string = 'SELECT * FROM aufgaben WHERE aufgaben_id = ?;';
 
     database.query(query, data, (err: MysqlError, result: any) => {
-        if (err){
+        if (err) {
             res.status(500).send({
                 message: 'Databaserequest failed' + err,
             });
-        } else if (result.affectedRows === 1) {
+        } else if (result.length === 1) {
             const aufgabe: Aufgabe = new Aufgabe(
                 result[0].id,
                 result[0].name,
@@ -172,28 +172,3 @@ SELECT * FROM aufgaben
 Eine bestimmte Aufgabe löschen:
 DELETE FROM aufgaben WHERE aufgaben_id = ?
  */
-
-
-
-//get all Aufgaben
-{/*
-app.get('/aufgabe',(req:Request,res:Response)=>{
-
-    let query: string= 'SELECT * FROM aufgaben;';
-
-    database.query(query,(err:MysqlError, result:any)=>{
-        if (err|| result === null){
-            //Query could not be executed
-            res.status(500).send({
-                message:'Database request failed'+ err,
-            });
-        } else {
-            //die Aufgabe was created
-            res.status(200).send({
-                message:'Successfully aufgabe created ',
-                aufgabe: result
-            });
-        }
-    });
-});
-*/}

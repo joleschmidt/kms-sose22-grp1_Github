@@ -4,3 +4,19 @@ Content-Type: application/json
 {
   "aufgabe": "Test"
 }
+
+
+###
+PUT http://localhost:8080/aufgabe/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Einkaufen",
+  "prioritaet": 1
+}
+
+###
+GET http://localhost:8080/aufgabe/1 HTTP/1.1
+
+###
+GET http://localhost:8080/aufgaben HTTP/1.1
