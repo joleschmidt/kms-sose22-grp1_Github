@@ -16,7 +16,7 @@ describe('"Task"', () => {
             }
             chai.request(server)
                 .post("/aufgabe")
-                .send(aufgabe)
+                //.send(aufgabe)
                 .end((err: any, res: any) => {
                     res.should.have.status(200);
                     done();
