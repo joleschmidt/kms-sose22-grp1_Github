@@ -1,4 +1,4 @@
-name: GitHub Test
+name: GitHub Test 1
 on: [push]
 jobs:
   Explore-GitHub-Actions:
