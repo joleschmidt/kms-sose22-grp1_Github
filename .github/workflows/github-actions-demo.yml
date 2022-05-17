@@ -11,7 +11,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: "Run Test"
-        run: mocha ../test/test.js
+        run: mocha ../../test/test.js
 
 
 
