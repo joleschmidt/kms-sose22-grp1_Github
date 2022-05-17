@@ -5,4 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run:  npm i --save-dev @types/mocha
+      - run: "mocha test/test.js"
+
+
+
 
