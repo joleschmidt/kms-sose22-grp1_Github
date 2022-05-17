@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run:  npm i -g --save-dev mocha
-      - run: mocha ../../test/test.js
+      - run: mocha /../../test/test.js
 
 
 
