@@ -4,4 +4,5 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: "mocha test/test.js"
+      - run:  npm i --save-dev @types/mocha
+
