@@ -6,6 +6,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "test/**/*.ts"
+    "test/**/*.ts",
+    "../../AppData/Local/JetBrains/WebStorm2021.2/javascript/typings/mocha/9.1.1/node_modules/@types/mocha/index.d.ts"
   ]
 }

@@ -9,7 +9,20 @@ chai.use(chaiHTTP);
 
 describe('"Task"', () => {
     //alle Tests hier einfügen
-
+    describe('"Post /aufgabe"', () => {
+        it("Aufgabe erstellen", (done) => {
+            const aufgabe = {
+                aufgabe: "Die Welt retten"
+            }
+            chai.request(server)
+                .post("/aufgabe")
+                .send(aufgabe)
+                .end((err: any, res: any) => {
+                    res.should.have.status(200);
+                    done();
+                })
+        })
+    });
 
 
 
