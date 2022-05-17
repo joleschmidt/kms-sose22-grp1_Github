@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run:  npm i -g --save-dev mocha
-      - run: mocha /home/ziyad/Uni/kms-sose22-grp1_Github/test/test.js
+      - run: mocha /kms-sose22-grp1_Github/test/test.js
 
 
 
