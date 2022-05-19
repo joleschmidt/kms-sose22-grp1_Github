@@ -22,7 +22,7 @@ jobs:
         run: |
           sudo /etc/init.d/mysql start
           mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
-          mysql 'CREATE TABLE aufgaben (aufgaben_id int(2), name varchar(25), time timestamp (6), prioritaet int(1))'
+          mysql -u root -e 'CREATE TABLE aufgaben (aufgaben_id int(2), name varchar(25), time timestamp (6), prioritaet int(1))'
       - name: "Run Test"
         run: npm test
 
