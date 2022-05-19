@@ -17,8 +17,7 @@ app.listen(8080, "localhost", function () {
 const database: mysql.Connection = mysql.createConnection({
     database: "kms_sose22_grp1",
     host: "localhost",
-    user: "root",
-    password: "root"
+    user: "root"
 });
 
 database.connect((err: MysqlError) => {
