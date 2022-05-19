@@ -1,12 +1,23 @@
 name: GitHub Test 1
 on: [ push ]
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          DB_DATABASE: kms_sose22_grp1
+          DB_USER: root
+          DB_PASSWORD: 'root'
+        ports:
+          - '3306: 3306'
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v1
+      - run: mysql -h 127.0.0.1 --port 3306 -u root -e 'CREATE DATABASE IF NOT EXISTS kms_sose22_grp1;'
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
-    env:
-      DB_DATABASE: kms_sose22_grp1
-      DB_USER: root
-      DB_PASSWORD: 'root'
     steps:
       - uses: actions/checkout@v3
       - name: 'Install Node'
