@@ -1,21 +1,22 @@
 name: GitHub Test 1
-on: [push]
+on: [ push ]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
-  - uses: actions/checkout@v3
-  - uses: actions/setup-node@v3
-    with:
-      node-version: 14
-      cache: 'npm'
-  - run: npm ci
-  - run: npm test
-      - name: Install mocha
-        run: npm i mocha @types/mocha
-      - name: Install dependencies
-        run: npm install
-      - name: "Run Test"
-        run: npm test
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 14
+        cache: 'npm'
+    - run: npm ci
+    - run: npm test
+             - name: Install mocha
+             run: npm i mocha @types/mocha
+             - name: Install dependencies
+               run: npm install
+             - name: "Run Test"
+               run: npm test
 
 
 
