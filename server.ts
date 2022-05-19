@@ -100,7 +100,7 @@ app.put('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
 
     const data: [string, number, number] = [name, prioritaet, aufgabe_id];
 
-    const query: string = "UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;";
+    const query = "UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;";
 
     database.query(query, data, (err: MysqlError, result: any) => {
         if (err) {
