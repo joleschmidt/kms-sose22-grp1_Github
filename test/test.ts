@@ -1,8 +1,8 @@
 import "mocha";
 
-const chai = require("chai");
-const chaiHTTP = require("chai-http");
-const server = require("../server");
+import chai = require("chai");
+import chaiHTTP = require("chai-http");
+import server = require("../server");
 
 chai.should();
 chai.use(chaiHTTP);

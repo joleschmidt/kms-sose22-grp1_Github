@@ -9,8 +9,7 @@ function getTodos() {
         error: (jqXHRresponse) => {
             console.log(jqXHRresponse.responseJSON.message);
         },
-    }).then(() => {
-    });
+    })
 }
 
 
@@ -38,7 +37,7 @@ function renderTodos(aufgaben: any[]) {
     }
 }
 function renderModal(event: Event){
-    const aufgaben_id: number = Number($(event.currentTarget as HTMLElement).parent().children(".aufgaben_id").val());
+    const aufgaben_id = Number($(event.currentTarget as HTMLElement).parent().children(".aufgaben_id").val());
     $.ajax("/aufgabe/:"+ aufgaben_id, {
         method: "GET",
         contentType: "json"
@@ -52,9 +51,9 @@ function renderModal(event: Event){
 }
 
 function updateToDos(event: Event){
-    const aufgaben_id: number = Number($("#aufgabe-id-hidden").val());
-    const name: string = String($(".bearbeitenInput").val());
-    const priority: number = Number($(".bearbeitenPrio").val());
+    const aufgaben_id = Number($("#aufgabe-id-hidden").val());
+    const name = String($(".bearbeitenInput").val());
+    const priority = Number($(".bearbeitenPrio").val());
     $.ajax("/aufgabe/:" + aufgaben_id, {
         method: "PUT",
         contentType: "application/json",
@@ -104,7 +103,7 @@ $(() => {
 //Callback for Post
 
 $(() => {
-    let inputAufgabe: JQuery = $("#inputAufgabe");
-    let formInput: JQuery = $("#formInput");
+    const inputAufgabe: JQuery = $("#inputAufgabe");
+    const formInput: JQuery = $("#formInput");
     formInput.on("submit",() => {createTask(inputAufgabe)});
 });

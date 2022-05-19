@@ -4,9 +4,7 @@
     "@types/jquery": "^3.5.14",
     "@types/mysql": "^2.15.21",
     "bootstrap": "^3.4.1",
-    "eslint": "^8.15.0",
     "express": "^4.18.0",
-    "gts": "^3.1.0",
     "mysql": "^2.18.1",
     "typescript": "^4.6.4"
   },
@@ -14,8 +12,11 @@
     "@types/bootstrap": "^5.1.10",
     "@types/jquery": "^3.5.14",
     "@types/mocha": "^9.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.24.0",
+    "@typescript-eslint/parser": "^5.24.0",
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",
+    "eslint": "^8.15.0",
     "mocha": "^10.0.0"
   },
   "scripts": {
