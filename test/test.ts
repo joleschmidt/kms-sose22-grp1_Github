@@ -8,7 +8,7 @@ import {Aufgabe} from "../model/aufgabe";
 chai.should();
 chai.use(chaiHTTP);
 
-describe('"Task"', () => {
+
     //alle Tests hier einfügen
     describe('"Post /aufgabe"', () => {
         it("Aufgabe erstellen", (done) => {
@@ -27,4 +27,3 @@ describe('"Task"', () => {
 
 //hallo1
 
-});
