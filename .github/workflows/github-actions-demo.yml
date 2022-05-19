@@ -18,8 +18,8 @@ jobs:
         run: npm i @types/mocha mocha
       - name: Install dependencies
         run: npm install
-       - name: Set up MySQL
-       run: |
+      - name: Set up MySQL
+        run: |
         sudo /etc/init.d/mysql start
         mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }}}
       - name: "Run Test"
