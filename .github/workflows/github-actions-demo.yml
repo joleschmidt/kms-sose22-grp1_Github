@@ -3,12 +3,15 @@ on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: 'Install Node'
-        uses: actions/setup-node@v1
+  - uses: actions/checkout@v3
+  - uses: actions/setup-node@v3
+    with:
+      node-version: 14
+      cache: 'npm'
+  - run: npm ci
+  - run: npm test
       - name: Install mocha
-        run: npm i @types/mocha
+        run: npm i @types/mocha mocha
       - name: Install dependencies
         run: npm install
       - name: "Run Test"
