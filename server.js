@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var express = require("express");
-var mysql = require("mysql");
+var mysql = require("mysql2");
 var aufgabe_1 = require("./model/aufgabe");
 //define and start server
 var app = express();
