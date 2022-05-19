@@ -11,7 +11,7 @@ jobs:
   - run: npm ci
   - run: npm test
       - name: Install mocha
-        run: npm i @types/mocha mocha
+        run: npm i mocha @types/mocha
       - name: Install dependencies
         run: npm install
       - name: "Run Test"
