@@ -21,6 +21,7 @@ jobs:
       - name: Set up MySQL
         run: |
           sudo /etc/init.d/mysql start
+          mysql -u root -p root
           mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }}; -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }} < aufgaben.sql'
       - name: "Run Test"
         run: npm test
