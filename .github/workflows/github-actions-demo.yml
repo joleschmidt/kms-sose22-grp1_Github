@@ -3,10 +3,6 @@ on: [ push ]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
-    env:
-      DB_DATABASE: kms_sose22_grp1
-      DB_USER: root
-      DB_PASSWORD: root
     steps:
       - uses: actions/checkout@v3
       - name: 'Install Node'
@@ -19,7 +15,12 @@ jobs:
       - name: Install dependencies
         run: npm install
        - name: Set up MySQL
+       - env:
+          DB_DATABASE: kms_sose22_grp1
+          DB_USER: root
+          DB_PASSWORD: root
        run: |
+        npm i mysql
         sudo /etc/init.d/mysql start
         mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
       - name: "Run Test"
