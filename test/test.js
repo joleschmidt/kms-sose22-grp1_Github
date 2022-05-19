@@ -22,6 +22,5 @@ describe('"Task"', function () {
             });
         });
     });
-    //hallo1
 });
 //# sourceMappingURL=test.js.map
