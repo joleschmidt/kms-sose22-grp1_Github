@@ -22,6 +22,7 @@ jobs:
         run: |
           sudo /etc/init.d/mysql start
           mysql -u root -p root
+          root
           mysql> CREATE DATABASE kms_sose22_grp1
           mysql> kms_sose22_grp1 < aufgaben.sql'
       - name: "Run Test"
