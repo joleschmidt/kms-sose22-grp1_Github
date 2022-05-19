@@ -14,7 +14,7 @@ var database = mysql.createConnection({
     database: "kms_sose22_grp1",
     host: "localhost",
     user: "root",
-    password: "root"
+    password: 'root'
 });
 database.connect(function (err) {
     if (err) {

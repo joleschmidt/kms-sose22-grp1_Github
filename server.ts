@@ -18,7 +18,7 @@ const database: mysql.Connection = mysql.createConnection({
     database: "kms_sose22_grp1",
     host: "localhost",
     user: "root",
-    password: "root"
+    password: 'root'
 });
 
 database.connect((err: MysqlError) => {
