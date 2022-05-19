@@ -2,7 +2,7 @@ name: GitHub Test 1
 on: [ push ]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: ubuntu-20.04
+    runs-on: windows-latest
     env:
       DB_DATABASE: kms_sose22_grp1
       DB_USER: 'root'
