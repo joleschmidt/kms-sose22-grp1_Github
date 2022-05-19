@@ -13,7 +13,8 @@ app.listen(8080, "localhost", function () {
 var database = mysql.createConnection({
     database: "kms_sose22_grp1",
     host: "localhost",
-    user: "root"
+    user: "root",
+    password: 'root'
 });
 database.connect(function (err) {
     if (err) {
