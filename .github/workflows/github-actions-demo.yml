@@ -5,9 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DB_DATABASE: kms_sose22_grp1
-      DB_USER: root
+      DB_USER: root@localhost
       DB_HOST: localhost
-      DB_PASSWORD: 'root'
+      DB_PASSWORD: 'password'
     steps:
       - uses: actions/checkout@v3
       - name: 'Install Node'
