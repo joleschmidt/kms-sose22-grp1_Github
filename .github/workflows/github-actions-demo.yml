@@ -21,10 +21,9 @@ jobs:
       - name: Set up MySQL
         run: |
           sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+          mysql mysql -h 127.0.0.1 -u root -proot -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
           mysql> use kms_sose22_grp1
           mysql> source aufgaben.sql
-          echo "root"
       - name: "Run Test"
         run: npm test
 
