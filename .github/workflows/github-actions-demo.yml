@@ -1,8 +1,12 @@
 name: GitHub Test 1
-on: [push]
+on: [ push ]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    env:
+      DB_DATABASE: kms_sose22_grp1
+      DB_USER: root
+      DB_PASSWORD: root
     steps:
       - uses: actions/checkout@v3
       - name: 'Install Node'
@@ -14,6 +18,10 @@ jobs:
         run: npm i @types/mocha mocha
       - name: Install dependencies
         run: npm install
+       - name: Set up MySQL
+       run: |
+        sudo /etc/init.d/mysql start
+        mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
       - name: "Run Test"
         run: npm test
 
