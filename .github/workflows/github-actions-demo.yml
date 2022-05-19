@@ -17,7 +17,7 @@ jobs:
       - name: Install mocha
         run: npm i @types/mocha mocha
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Set up MySQL
         run: |
           sudo /etc/init.d/mysql start
