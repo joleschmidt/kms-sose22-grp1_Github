@@ -21,6 +21,8 @@ jobs:
       - name: Set up MySQL
         run: |
           sudo /etc/init.d/mysql start
+          sudo mysql
+          mysql -u root -p
           mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -uroot
           mysql -e 'GRANT ALL PRIVILEGES ON kms-sose22_grp1.* TO 'root'@'localhost'';
           mysql -e 'SHOW DATABASES; -uroot
