@@ -3,7 +3,7 @@ exports.__esModule = true;
 require("mocha");
 var chai = require("chai");
 var chaiHTTP = require("chai-http");
-var server = require("../server");
+var server = require("../server.js");
 chai.should();
 chai.use(chaiHTTP);
 describe('"Task"', function () {

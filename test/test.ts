@@ -2,7 +2,7 @@ import "mocha";
 
 import chai = require("chai");
 import chaiHTTP = require("chai-http");
-import server = require("../server");
+import server = require("../server.js");
 
 chai.should();
 chai.use(chaiHTTP);
