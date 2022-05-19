@@ -20,7 +20,7 @@ jobs:
         run: npm ci
       - name: Set up MySQL
         run: |
-          sudo /etc/init.d/mysql start  --skip-grant-tables 
+          sudo /etc/init.d/mysql start 
           mysqladmin -u root -proot password ''
           mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }}
           mysql -u root kms_sose22_grp1  < aufgaben.sql
