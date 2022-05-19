@@ -2,7 +2,7 @@ name: GitHub Test 1
 on: [ push ]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       DB_DATABASE: kms_sose22_grp1
       DB_USER: 'root'
@@ -22,7 +22,7 @@ jobs:
         run: |
           sudo /etc/init.d/mysql start
           mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
-          mysql -u root -p root
+          mysql -u root -proot
           mysql> use kms_sose22_grp1
           mysql> source aufgaben.sql
       - name: "Run Test"
