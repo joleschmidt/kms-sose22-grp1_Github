@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DB_DATABASE: kms_sose22_grp1
-      DB_USER: root
+      DB_USER: root1
       DB_HOST: localhost
       DB_PASSWORD: 'root'
     steps:
