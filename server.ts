@@ -171,4 +171,5 @@ SELECT * FROM aufgaben
 
 Eine bestimmte Aufgabe löschen:
 DELETE FROM aufgaben WHERE aufgaben_id = ?
+
  */
