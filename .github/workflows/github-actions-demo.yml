@@ -20,9 +20,10 @@ jobs:
         run: npm ci
       - name: Set up MySQL
         run: |
-          sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
-          mysql -u root -proot kms_sose22_grp1  < aufgaben.sql
+          sudo /etc/init.d/mysql start 
+          mysqladmin -u root -proot password ''
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }}
+          mysql -u root kms_sose22_grp1  < aufgaben.sql
       - name: "Run Test"
         run: npm test
 

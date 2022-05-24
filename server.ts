@@ -17,8 +17,7 @@ app.listen(8080, "localhost", function () {
 const database: mysql.Connection = mysql.createConnection({
     database: "kms_sose22_grp1",
     host: "localhost",
-    user: "root",
-    password: 'root'
+    user: "root"
 });
 
 database.connect((err: MysqlError) => {
@@ -100,7 +99,7 @@ app.put('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
 
     const data: [string, number, number] = [name, prioritaet, aufgabe_id];
 
-    const query = "UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;";
+    const query: string = "UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;";
 
     database.query(query, data, (err: MysqlError, result: any) => {
         if (err) {
