@@ -22,6 +22,14 @@ describe('"Task"', () => {
                     res.should.have.status(200);
                     done();
                 })
+            it("In der Post-Route wurden nicht alle Felder ausgefühlt", (done) => {
+                chai.request(server)
+                    .post("/aufgabe")
+                    .end((err: any, res: any) => {
+                        res.should.have.status(400);
+                        done();
+                    })
+            })
         })
     });
 

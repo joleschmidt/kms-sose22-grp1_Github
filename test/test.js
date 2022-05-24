@@ -20,6 +20,14 @@ describe('"Task"', function () {
                 res.should.have.status(200);
                 done();
             });
+            it("In der Post-Route wurden nicht alle Felder ausgefühlt", function (done) {
+                chai.request(server)
+                    .post("/aufgabe")
+                    .end(function (err, res) {
+                    res.should.have.status(400);
+                    done();
+                });
+            });
         });
     });
 });

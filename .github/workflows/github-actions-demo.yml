@@ -23,7 +23,7 @@ jobs:
           sudo /etc/init.d/mysql start 
           mysqladmin -u root -proot password ''
           mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }}
-          mysql -u root kms_sose22_grp1  < aufgaben.sql
+          mysql -u root kms_sose22_grp1  < datenbank/kms_sose22_grp1.sql
       - name: "Run Test"
         run: npm test
 
