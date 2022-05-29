@@ -1,7 +1,7 @@
 import express = require("express")
 import {Request} from "express";
 import {Response} from "express";
-import * as mysql from "mysql";
+import * as mysql from "mysql2";
 import {MysqlError} from 'mysql';
 import {Aufgabe} from "./model/aufgabe";
 
