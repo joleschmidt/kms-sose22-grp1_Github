@@ -4,9 +4,10 @@ require("mocha");
 var chai = require("chai");
 var chaiHTTP = require("chai-http");
 var server = require("../server.js");
+var chai_1 = require("chai");
 chai.should();
 chai.use(chaiHTTP);
-describe('"Task"', function () {
+describe('Task', function () {
     //alle Tests hier einfügen
     describe('"Post /aufgabe"', function () {
         it("Aufgabe erstellen", function (done) {
@@ -27,6 +28,18 @@ describe('"Task"', function () {
                     res.should.have.status(400);
                     done();
                 });
+            });
+        });
+    });
+    describe('GET /aufgaben', function () {
+        it('should get all aufgaben', function (done) {
+            chai.request(server)
+                .get('/aufgaben')
+                .set('dataType', 'json')
+                .end(function (err, res) {
+                (0, chai_1.expect)(res).to.have.status(200);
+                res.body.should.have.property('aufgaben');
+                done();
             });
         });
     });

@@ -8,6 +8,7 @@ import {expect} from "chai";
 chai.should();
 chai.use(chaiHTTP);
 
+describe('Task', ()=> {
     //alle Tests hier einfügen
     describe('"Post /aufgabe"', () => {
         it("Aufgabe erstellen", (done) => {
@@ -32,15 +33,16 @@ chai.use(chaiHTTP);
         })
     });
 
-describe('GET /aufgaben', ()=> {
-    it('should send the success message and a list of aufgaben', (done) => {
-        chai.request(server)
-            .get('/aufgaben')
-            .set('dataType', 'json')
-            .end(function (err, res) {
-                expect(res).to.have.status(200);
-                res.body.should.have.property('aufgaben');
-                done();
-            });
+    describe('GET /aufgaben', ()=> {
+        it('should get all aufgaben', (done) => {
+            chai.request(server)
+                .get('/aufgaben')
+                .set('dataType', 'json')
+                .end(function (err, res) {
+                    expect(res).to.have.status(200);
+                    res.body.should.have.property('aufgaben');
+                    done();
+                });
+        });
     });
 });
