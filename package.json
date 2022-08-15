@@ -5,7 +5,7 @@
     "@types/mysql": "^2.15.21",
     "bootstrap": "^3.4.1",
     "express": "^4.18.0",
-    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
     "typescript": "^4.6.4"
   },
   "devDependencies": {
@@ -20,6 +20,6 @@
     "mocha": "^10.0.0"
   },
   "scripts": {
-    "test": "mocha test/test.js"
+    "test": "mocha test/test.js --exit"
   }
 }

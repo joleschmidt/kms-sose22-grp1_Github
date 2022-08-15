@@ -1,0 +1,32 @@
+name: GitHub Test 1
+on: [ push ]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-20.04
+    env:
+      DB_DATABASE: kms_sose22_grp1
+      DB_USER: 'root'
+      DB_PASSWORD: 'root'
+    steps:
+      - uses: actions/checkout@v3
+      - name: 'Install Node'
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: npm
+      - name: Install mocha
+        run: npm i @types/mocha mocha
+      - name: Install dependencies
+        run: npm ci
+      - name: Set up MySQL
+        run: |
+          sudo /etc/init.d/mysql start 
+          mysqladmin -u root -proot password ''
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }}
+          mysql -u root kms_sose22_grp1  < aufgaben.sql
+      - name: "Run Test"
+        run: npm test
+
+
+
+
