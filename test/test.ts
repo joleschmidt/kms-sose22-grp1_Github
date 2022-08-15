@@ -11,6 +11,7 @@ describe('"Task"', () => {
     //alle Tests hier einfügen
 
     //Post-Routen Test
+    //Das ist der Post Test
     describe('"Post /aufgabe"', () => {
         it("Aufgabe erstellen", (done) => {
             const aufgabe = {
@@ -24,8 +25,13 @@ describe('"Task"', () => {
                     done();
                 })
         })
-    });
-
-
-
-});
+        it("In der Post-Route wurden nicht alle Felder ausgefühlt", (done) => {
+            chai.request(server)
+                .post("/aufgabe")
+                .end((err: any, res: any) => {
+                    res.should.have.status(400);
+                    done();
+                })
+        })
+    })
+})
