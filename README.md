@@ -25,5 +25,3 @@ npm install
 ### Tests
 
 To run our tests just go to package.json file and under `"scripts"` you can run the mocha test.
-
-### Docs
