@@ -31,7 +31,6 @@ app.use('/jquery', express.static(basedir + '/node_modules/jquery/dist'));
 app.use('/bootstrap', express.static(basedir + '/node_modules/bootstrap/dist/'));
 app.post('/aufgabe', function (req, res) {
     //Aufgabe erstellen
-    console.log(req.body);
     var aufgabe = req.body.aufgabe;
     //add Aufgabe
     if (aufgabe) {
@@ -83,9 +82,9 @@ app.get('/aufgaben', function (req, res) {
     });
 });
 app.put('/aufgabe/:aufgabe_id', function (req, res) {
-    var aufgabe_id = parseInt(req.params.aufgabe_id);
+    var aufgabe_id = Number(req.params.aufgabe_id);
     var name = req.body.name;
-    var prioritaet = req.body.prioritaet;
+    var prioritaet = req.body.priority;
     var data = [name, prioritaet, aufgabe_id];
     var query = "UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;";
     database.query(query, data, function (err, result) {
@@ -96,7 +95,8 @@ app.put('/aufgabe/:aufgabe_id', function (req, res) {
         }
         else if (result.affectedRows === 1) {
             res.status(200).send({
-                message: 'Successfully updated aufgabe.'
+                message: 'Successfully updated aufgabe.',
+                aufgabe: result
             });
         }
         else {

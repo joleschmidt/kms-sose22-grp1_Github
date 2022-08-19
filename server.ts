@@ -69,7 +69,7 @@ app.post('/aufgabe', (req: Request, res: Response) => {
 
 
 app.get('/aufgaben', function (req: Request, res: Response) {
-    let query: string = "SELECT * FROM aufgaben";
+    const query: string = "SELECT * FROM aufgaben";
     database.query(query, (err: MysqlError, result: any) => {
         if (err) {
             //Query could not be executed
@@ -77,8 +77,8 @@ app.get('/aufgaben', function (req: Request, res: Response) {
                 message: 'Database request failed' + err,
             });
         } else {
-            let aufgaben: Aufgabe[] = [];
-            for (let row of result){
+            const aufgaben: Aufgabe[] = [];
+            for (const row of result){
                 aufgaben.push(row);
             }
             res.status(200).send({
@@ -96,9 +96,8 @@ app.put('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
     const name: string = req.body.name;
     const prioritaet: number = req.body.priority;
 
-    console.log(name, prioritaet);
     const data: [string, number, number] = [name, prioritaet, aufgabe_id];
-    console.log(data);
+
     const query: string = "UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;";
 
     database.query(query, data, (err: MysqlError, result: any) => {
@@ -151,6 +150,7 @@ app.get('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
 
     });
 });
+
 module.exports = app;
 /*
 SQL Queries

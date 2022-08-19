@@ -42,13 +42,15 @@ function renderModal(aufgaben_id: number){
         method: "GET",
         contentType: "json"
     }).then((data) =>{
-        console.log(data);
+
         const updateTodoName: JQuery = $("#bearbeitenAufgabe");
         const updateTodoPrio: JQuery = $("#bearbeitenPrio");
         const updateTodoId: JQuery = $("#aufgabe-id-hidden");
+
         updateTodoName.val(data.aufgabe.name);
         updateTodoPrio.val(data.aufgabe.prioritaet);
         updateTodoId.val(a_id);
+
         $("#edit-modal").show();
     }).catch((jqXHR: JQueryXHR) => {
         console.log(jqXHR);
@@ -59,7 +61,7 @@ function updateToDos(){
     const aufgaben_id = Number($("#aufgabe-id-hidden").val());
     const name = String($("#bearbeitenAufgabe").val());
     const priority = Number($("#bearbeitenPrio").val());
-    console.log(priority, name);
+
     $.ajax("/aufgabe/" + aufgaben_id, {
         method: "PUT",
         contentType: "application/json",
