@@ -14,8 +14,6 @@ function getTodos() {
 
 
 function renderTodos(aufgaben: any[]) {
-    console.log(aufgaben);
-    console.log("fsafsafasf")
 
     const todoBody: JQuery = $('#todo-body');
     todoBody.empty();
@@ -28,7 +26,7 @@ function renderTodos(aufgaben: any[]) {
             <h6 class="aufgaben_id">ID: ${aufgabe.aufgaben_id}</h6>
             <p class="card-text priority">Priorität ${aufgabe.prioritaet}</p>
             <p class="card-text">${aufgabe.time}</p>
-            <a class="btn btn-secondary mr-2 aufgabeBearbeiten">Edit</a>
+            <a class="btn btn-secondary mr-2" onclick="renderModal(${aufgabe.aufgaben_id})">Edit</a>
             <a class="btn btn-danger">Delete</a>
             </div>
             </div>
@@ -36,33 +34,41 @@ function renderTodos(aufgaben: any[]) {
         todoBody.append(tableEntry);
     }
 }
-function renderModal(event: Event){
-    const aufgaben_id = Number($(event.currentTarget as HTMLElement).parent().children(".aufgaben_id").val());
-    $.ajax("/aufgabe/:"+ aufgaben_id, {
+
+function renderModal(aufgaben_id: number){
+    const a_id = Number(aufgaben_id);
+    console.log(a_id);
+    $.ajax("/aufgabe/"+ a_id, {
         method: "GET",
         contentType: "json"
     }).then((data) =>{
-        $("#bearbeitenAufgabe").val(data.name);
-        $("#bearbeitenPrio").val(data.prioritaet);
-        $("#aufgabe-id-hidden").val(data.id);
+        console.log(data);
+        const updateTodoName: JQuery = $("#bearbeitenAufgabe");
+        const updateTodoPrio: JQuery = $("#bearbeitenPrio");
+        const updateTodoId: JQuery = $("#aufgabe-id-hidden");
+        updateTodoName.val(data.aufgabe.name);
+        updateTodoPrio.val(data.aufgabe.prioritaet);
+        updateTodoId.val(a_id);
+        $("#edit-modal").show();
     }).catch((jqXHR: JQueryXHR) => {
         console.log(jqXHR);
     })
 }
 
-function updateToDos(event: Event){
+function updateToDos(){
     const aufgaben_id = Number($("#aufgabe-id-hidden").val());
-    const name = String($(".bearbeitenInput").val());
-    const priority = Number($(".bearbeitenPrio").val());
-    $.ajax("/aufgabe/:" + aufgaben_id, {
+    const name = String($("#bearbeitenAufgabe").val());
+    const priority = Number($("#bearbeitenPrio").val());
+    console.log(priority, name);
+    $.ajax("/aufgabe/" + aufgaben_id, {
         method: "PUT",
         contentType: "application/json",
         data: JSON.stringify({
             name: name,
             priority: priority
         })
-    }).then((data) =>{
-        alert(data)
+    }).then(() =>{
+        getTodos();
     }).catch((jqXHR: JQueryXHR) =>{
         console.log(jqXHR.responseText);
     })
@@ -70,7 +76,6 @@ function updateToDos(event: Event){
 
 function createTask(inputAufgabe): void {
     const aufgabe: string = inputAufgabe.val().toString();
-    console.log(aufgabe)
 
     $.ajax("/aufgabe", {
         method: "POST",
@@ -88,15 +93,10 @@ function createTask(inputAufgabe): void {
 //Main Callback
 $(() => {
     $("#edit-modal").hide();
-    $("#todo-body").on("click", '.aufgabeBearbeiten', function () {
-        $("#edit-modal").show();
-        renderModal(event);
-    });
     $(".save").on("click", function (){
         $("#edit-modal").hide();
-        updateToDos(event);
+        updateToDos();
     });
-
     getTodos();
 });
 

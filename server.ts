@@ -39,14 +39,13 @@ app.use('/bootstrap', express.static(basedir + '/node_modules/bootstrap/dist/'))
 
 app.post('/aufgabe', (req: Request, res: Response) => {
     //Aufgabe erstellen
-    console.log(req.body)
-    let aufgabe: string = req.body.aufgabe;
+    const aufgabe: string = req.body.aufgabe;
 
     //add Aufgabe
     if (aufgabe) {
         // Create new aufgabe
-        let data: string = aufgabe;
-        let query: string = 'INSERT INTO aufgaben (name, prioritaet) VALUES (?, 1)';
+        const data: string = aufgabe;
+        const query: string = 'INSERT INTO aufgaben (name, prioritaet) VALUES (?, 1)';
         database.query(query, data, (err: MysqlError, result: any) => {
             if (err) {
                 //Query could not be executed
@@ -93,12 +92,13 @@ app.get('/aufgaben', function (req: Request, res: Response) {
 
 app.put('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
 
-    const aufgabe_id: number = parseInt(req.params.aufgabe_id);
+    const aufgabe_id: number = Number(req.params.aufgabe_id);
     const name: string = req.body.name;
-    const prioritaet: number = req.body.prioritaet;
+    const prioritaet: number = req.body.priority;
 
+    console.log(name, prioritaet);
     const data: [string, number, number] = [name, prioritaet, aufgabe_id];
-
+    console.log(data);
     const query: string = "UPDATE aufgaben SET name = ?, prioritaet = ? WHERE aufgaben_id = ?;";
 
     database.query(query, data, (err: MysqlError, result: any) => {
@@ -109,6 +109,7 @@ app.put('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
         } else if (result.affectedRows === 1) {
             res.status(200).send({
                 message: 'Successfully updated aufgabe.',
+                aufgabe: result
             });
         } else {
             res.status(404).send({
