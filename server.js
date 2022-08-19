@@ -82,7 +82,7 @@ app.get('/aufgaben', function (req, res) {
     });
 });
 app.put('/aufgabe/:aufgabe_id', function (req, res) {
-    var aufgabe_id = Number(req.params.aufgabe_id);
+    var aufgabe_id = parseInt(req.params.aufgabe_id);
     var name = req.body.name;
     var prioritaet = req.body.priority;
     var data = [name, prioritaet, aufgabe_id];

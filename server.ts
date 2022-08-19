@@ -92,7 +92,7 @@ app.get('/aufgaben', function (req: Request, res: Response) {
 
 app.put('/aufgabe/:aufgabe_id', function (req: Request, res: Response) {
 
-    const aufgabe_id: number = Number(req.params.aufgabe_id);
+    const aufgabe_id: number = parseInt(req.params.aufgabe_id);
     const name: string = req.body.name;
     const prioritaet: number = req.body.priority;
 

@@ -41,7 +41,7 @@ describe('"Task"', function () {
                 .set('content-type', 'application/json')
                 .send({
                 'name': 'KMS machen',
-                'prioritaet': 1
+                'priority': 1
             })
                 .end(function (err, res) {
                 (0, chai_1.expect)(res).to.have.status(200);
