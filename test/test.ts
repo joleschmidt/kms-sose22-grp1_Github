@@ -4,6 +4,7 @@ import chai = require("chai");
 import chaiHTTP = require("chai-http");
 import server = require("../server.js");
 import {Aufgabe} from "../model/aufgabe";
+import {expect} from "chai";
 
 chai.should();
 chai.use(chaiHTTP);
@@ -35,4 +36,40 @@ describe('"Task"', () => {
                 })
         })
     })
+
+    describe('PUT', ()=> {
+        it('should send the success message', function (done) {
+            chai.request('http://localhost:8080')
+                .put('/aufgabe/1')
+                .set('content-type', 'application/json')
+                .send({
+                    'name':'KMS machen',
+                    'prioritaet': 1
+                })
+                .end(function (err, res) {
+                    expect(res).to.have.status(200);
+                    done();
+                })
+        });
+    });
+
+    describe('Aufgabe class', () => {
+
+        const aufgabe = new Aufgabe(1, 'Einkaufen', new Date(), 1);
+
+        it('should creates an new instance', () => {
+            expect(aufgabe.id).to.equal(1);
+            expect(aufgabe.name).to.equal('Einkaufen');
+            expect(aufgabe.prioritaet).to.equal(1);
+        });
+
+        it('should be an instance of Aufgabe', () => {
+            expect(aufgabe).to.be.an.instanceof(Aufgabe);
+        });
+
+        it('should be an object', () => {
+            expect(aufgabe).to.be.an("object");
+        });
+    });
+
 })

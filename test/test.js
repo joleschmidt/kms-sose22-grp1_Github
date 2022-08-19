@@ -4,10 +4,14 @@ require("mocha");
 var chai = require("chai");
 var chaiHTTP = require("chai-http");
 var server = require("../server.js");
+var aufgabe_1 = require("../model/aufgabe");
+var chai_1 = require("chai");
 chai.should();
 chai.use(chaiHTTP);
 describe('"Task"', function () {
     //alle Tests hier einfügen
+    //Post-Routen Test
+    //Das ist der Post Test
     describe('"Post /aufgabe"', function () {
         it("Aufgabe erstellen", function (done) {
             var aufgabe = {
@@ -20,6 +24,43 @@ describe('"Task"', function () {
                 res.should.have.status(200);
                 done();
             });
+        });
+        it("In der Post-Route wurden nicht alle Felder ausgefühlt", function (done) {
+            chai.request(server)
+                .post("/aufgabe")
+                .end(function (err, res) {
+                res.should.have.status(400);
+                done();
+            });
+        });
+    });
+    describe('PUT', function () {
+        it('should send the success message', function (done) {
+            chai.request('http://localhost:8080')
+                .put('/aufgabe/1')
+                .set('content-type', 'application/json')
+                .send({
+                'name': 'KMS machen',
+                'prioritaet': 1
+            })
+                .end(function (err, res) {
+                (0, chai_1.expect)(res).to.have.status(200);
+                done();
+            });
+        });
+    });
+    describe('Aufgabe class', function () {
+        var aufgabe = new aufgabe_1.Aufgabe(1, 'Einkaufen', new Date(), 1);
+        it('should creates an new instance', function () {
+            (0, chai_1.expect)(aufgabe.id).to.equal(1);
+            (0, chai_1.expect)(aufgabe.name).to.equal('Einkaufen');
+            (0, chai_1.expect)(aufgabe.prioritaet).to.equal(1);
+        });
+        it('should be an instance of Aufgabe', function () {
+            (0, chai_1.expect)(aufgabe).to.be.an["instanceof"](aufgabe_1.Aufgabe);
+        });
+        it('should be an object', function () {
+            (0, chai_1.expect)(aufgabe).to.be.an("object");
         });
     });
 });
