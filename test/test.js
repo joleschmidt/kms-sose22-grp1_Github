@@ -65,13 +65,12 @@ describe('"Task"', function () {
     });
     describe("Put /aufgabe/:aufgaben_id", function () {
         it("Aufgabe bearbeiten", function (done) {
-            var id = 1;
             var aufgabe = {
                 name: "Die Welt nicht retten",
                 prioritaet: 2
             };
             chai.request(server)
-                .put("/aufgabe/" + id)
+                .put("/aufgabe/1")
                 .send(aufgabe)
                 .end(function (err, res) {
                 res.should.have.status(200);

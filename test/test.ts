@@ -74,13 +74,12 @@ describe('"Task"', () => {
 
     describe("Put /aufgabe/:aufgaben_id", () => {
         it("Aufgabe bearbeiten", (done) => {
-            const id = 1;
             const aufgabe = {
                 name: "Die Welt nicht retten",
                 prioritaet: 2
             }
             chai.request(server)
-                .put("/aufgabe/" + id)
+                .put("/aufgabe/1")
                 .send(aufgabe)
                 .end((err: any, res: any) => {
                     res.should.have.status(200);
