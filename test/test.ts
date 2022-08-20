@@ -72,4 +72,35 @@ describe('"Task"', () => {
         });
     });
 
+    describe("Put /aufgabe/:aufgaben_id", () => {
+        it("Aufgabe bearbeiten", (done) => {
+            const id = 2;
+            const aufgabe = {
+                name: "Die Welt nicht retten",
+                prioritaet: 2
+            }
+            chai.request(server)
+                .put("/aufgabe/" + id)
+                .send(aufgabe)
+                .end((err: any, res: any) => {
+                    res.should.have.status(200);
+                    done();
+                })
+        })
+        it("Put kann nicht bearbeitet werden da es die ID nicht gibt", (done) => {
+            const idput = 12;
+            const aufgabe = {
+                name: "Servus Deutschland",
+                prioritaet: 1
+            }
+            chai.request(server)
+                .put("/aufgabe/" + idput)
+                .send(aufgabe)
+                .end((err: any, res: any) => {
+                    res.should.have.status(404);
+                    done();
+                })
+        })
+    });
+
 })
