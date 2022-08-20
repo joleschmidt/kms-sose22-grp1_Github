@@ -85,7 +85,7 @@ describe('"Task"', function () {
                 prioritaet: 1
             };
             chai.request(server)
-                .put("/aufgabe/" + idput)
+                .put("/aufgabe/" + 432432432432432)
                 .send(aufgabe)
                 .end(function (err, res) {
                 res.should.have.status(404);

@@ -94,7 +94,7 @@ describe('"Task"', () => {
                 prioritaet: 1
             }
             chai.request(server)
-                .put("/aufgabe/" + idput)
+                .put("/aufgabe/" + 432432432432432)
                 .send(aufgabe)
                 .end((err: any, res: any) => {
                     res.should.have.status(404);
