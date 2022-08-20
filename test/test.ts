@@ -89,4 +89,23 @@ describe('"Task"', () => {
         })
     });
 
+    describe("Get /aufgaben", () => {
+        it("Alle Aufgaben ausgeben", (done) => {
+            chai.request(server)
+                .get("/aufgaben")
+                .end((err: any, res: any) => {
+                    res.should.have.status(200);
+                    done();
+                })
+        })
+        it("Soll nicht alle Aufgaben ausgeben", (done) => {
+            chai.request(server)
+                .post("/aufgab") // Extra eine falsche Url angegeben
+                .end((err: any, res: any) => {
+                    res.should.have.status(404);
+                    done();
+                })
+        })
+    });
+
 })

@@ -79,5 +79,23 @@ describe('"Task"', function () {
             });
         });
     });
+    describe("Get /aufgaben", function () {
+        it("Alle Aufgaben ausgeben", function (done) {
+            chai.request(server)
+                .get("/aufgaben")
+                .end(function (err, res) {
+                res.should.have.status(200);
+                done();
+            });
+        });
+        it("Soll nicht alle Aufgaben ausgeben", function (done) {
+            chai.request(server)
+                .post("/aufgab") // Extra eine falsche Url angegeben
+                .end(function (err, res) {
+                res.should.have.status(404);
+                done();
+            });
+        });
+    });
 });
 //# sourceMappingURL=test.js.map
