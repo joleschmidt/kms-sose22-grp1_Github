@@ -65,7 +65,7 @@ describe('"Task"', function () {
     });
     describe("Put /aufgabe/:aufgaben_id", function () {
         it("Aufgabe bearbeiten", function (done) {
-            var id = 2;
+            var id = 1;
             var aufgabe = {
                 name: "Die Welt nicht retten",
                 prioritaet: 2
@@ -85,7 +85,7 @@ describe('"Task"', function () {
                 prioritaet: 1
             };
             chai.request(server)
-                .put("/aufgabe/" + 432432432432432)
+                .put("/aufgabe/" + idput)
                 .send(aufgabe)
                 .end(function (err, res) {
                 res.should.have.status(404);
