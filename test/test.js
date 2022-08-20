@@ -63,20 +63,7 @@ describe('"Task"', function () {
             (0, chai_1.expect)(aufgabe).to.be.an("object");
         });
     });
-    describe("Put /aufgabe/:aufgaben_id", function () {
-        it("Aufgabe bearbeiten", function (done) {
-            var aufgabe = {
-                name: "Die Welt nicht retten",
-                prioritaet: 2
-            };
-            chai.request(server)
-                .put("/aufgabe/1")
-                .send(aufgabe)
-                .end(function (err, res) {
-                res.should.have.status(200);
-                done();
-            });
-        });
+    describe("Put Error /aufgabe/:aufgaben_id", function () {
         it("Put kann nicht bearbeitet werden da es die ID nicht gibt", function (done) {
             var idput = 12;
             var aufgabe = {
